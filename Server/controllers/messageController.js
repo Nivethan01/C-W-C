@@ -1,7 +1,7 @@
 const route=require('express').Router();
 const authMiddleware=require('./../Middlewares/authMiddleware');
 const Chat=require('./../models/chart');
-const message = require('./../models/message');
+// const message = require('./../models/message');
 const Message=require('./../models/message');
 route.post('/new-msg',authMiddleware,async(req,res)=>{
     try{
@@ -25,6 +25,21 @@ route.post('/new-msg',authMiddleware,async(req,res)=>{
             message: error.message,
             success:false
         })
+    }
+})
+
+route.get('/get-all-msgs/:chatId',authMiddleware,async(req,res)=>{
+    try{
+        const allMessage=await Message.find({chatId:req.params.chatId}).sort({createdAt:1});
+        res.send({
+            message:'Message sended successfully',
+            success:true,
+            data:allMessage 
+        })
+    }
+    catch(error){
+        message=error.message;
+        success=false;
     }
 })
 module.exports=route;
