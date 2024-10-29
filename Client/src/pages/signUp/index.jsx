@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { signUpUser } from "./../../api_Calls/auth";
 function SignUp() {
   const [User, setUser] = React.useState({
     firstname: "",
@@ -7,9 +8,18 @@ function SignUp() {
     email: "",
     password: "",
   });
-  function onformSubmit(e) {
+  async function onformSubmit(e) {
     e.preventDefault();
-    console.log(User);
+    try {
+      const response = await signUpUser(User);
+      if (response.success) {
+        alert(response.message);
+      } else {
+        alert(response.message);
+      }
+    } catch (err) {
+      alert(err.message);
+    }
   }
   return (
     <div className="container">
