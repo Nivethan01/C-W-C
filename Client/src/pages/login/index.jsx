@@ -30,7 +30,7 @@ function Login() {
       <div className="container-back-color"></div>
       <div className="card">
         <div className="card_title">
-          <h1>Login Here</h1>
+          <h1>Login</h1>
         </div>
         <div className="form">
           <form onSubmit={onSubmit}>
@@ -52,7 +52,7 @@ function Login() {
         <div className="card_terms">
           <span>
             Don't have an account yet?
-            <Link to="/signup">Signup Here</Link>
+            <Link to="/signup" className="link">Signup Here</Link>
           </span>
         </div>
       </div>

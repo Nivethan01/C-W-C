@@ -15,17 +15,23 @@ body{
 /*******************************************************
 *************CSS STYLES FOR LOGIN & SIGNUP**************
 ********************************************************/
-.container-back-img{
-  background-image: url('../public/images/background.jpeg');
+.container-back-img {
+  background-image: url('../public/images/background.jpg');
   background-repeat: no-repeat;
-  background-size: cover;
-  width: 100%;
-  height: 100%;
-  position: absolute;
+  background-size: cover; /* Ensures the image covers the entire container */
+  background-position: center; /* Centers the image in the frame */
+  width: 100vw; /* Sets the width to the full viewport width */
+  height: 100vh; /* Sets the height to the full viewport height */
+  position: fixed; /* Fixes the image to prevent scrolling */
+  top: 0;
+  left: 0;
   z-index: -2;
 }
+/* .container-link{
+  color: #0b13f4;
+} */
 .container-back-color{
-  background-color: #ac1c1cf2;
+  background-color: #ac1c1c44;
   opacity: 0.7;
   width: 100%;
   height: 100%;
@@ -45,7 +51,7 @@ body{
   box-shadow: 0 5px 10px 0 rgb(0, 0, 0);
   width: 400px;
   padding: 20px 0px;
-  background-color: #ffffff;
+  background-color: #ffffff7b;
   padding: 10px 30px;
 }
 .column{
@@ -61,6 +67,7 @@ body{
 .card_title {
   text-align: center;
   padding: 10px;
+  font: 1em sans-serif;
 }
 
 .card_title h1 {
@@ -79,7 +86,7 @@ body{
 }
 
 .form button {
-  background-color: #f40b0bf0;
+  background-color: #490bf4a8;
   color: #ffffff;
   font-size: 16px;
   outline: none;
@@ -88,6 +95,11 @@ body{
   padding: 8px 15px;
   width: 100%;
   margin-top: 10px;
+}
+:hover.form button{
+  background-color: #0b13f4;
+  transition: 1s;
+  cursor: pointer;
 }
 
 .card_terms {
@@ -106,7 +118,7 @@ body{
 }
 
 .card a {
-  color: #4796ff;
+  color: #0804c0;
   text-decoration: none;
   margin-left: 5px;
 }
