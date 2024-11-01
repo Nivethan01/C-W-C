@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { signUpUser } from "./../../api_Calls/auth";
+import toast from "react-hot-toast";
 function SignUp() {
   const [User, setUser] = React.useState({
     firstname: "",
@@ -13,12 +14,12 @@ function SignUp() {
     try {
       const response = await signUpUser(User);
       if (response.success) {
-        alert(response.message);
+        toast.success(response.message);
       } else {
-        alert(response.message);
+        toast.error(response.message);
       }
     } catch (err) {
-      alert(err.message);
+      toast.error(err.message);
     }
   }
   return (

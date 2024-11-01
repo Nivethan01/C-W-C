@@ -9,7 +9,7 @@ router.post('/signup', async (req, res) => {
         // Check if the user already exists by email
         const user = await User.findOne({ email: req.body.email });
         if (user) {
-            return res.status(400).send({
+            return res.send({
                 message: "User already exists",
                 success: false
             });
@@ -23,13 +23,13 @@ router.post('/signup', async (req, res) => {
         const newUser = new User(req.body);
         await newUser.save();
 
-        res.status(201).send({  //created
+        res.send({  //created
             message: "User created successfully",
             success: true
         });
 
     } catch (error) {
-        res.status(500).send({
+        res.send({
             message: "Internal server error",
             success: false
         });
@@ -43,7 +43,7 @@ router.post('/login', async (req, res) => {
         // Check if the user exists by email
         const user = await User.findOne({ email: req.body.email }).select('+password'); // Explicitly select password
         if (!user) {
-            return res.status(401).send({
+            return res.send({
                 message: "Invalid email",
                 success: false
             });
@@ -52,7 +52,7 @@ router.post('/login', async (req, res) => {
         // Compare the provided password with the hashed password
         const isValid = await bcrypt.compare(req.body.password, user.password);
         if (!isValid) {
-            return res.status(401).send({
+            return res.send({
                 message: "Invalid password",
                 success: false
             });

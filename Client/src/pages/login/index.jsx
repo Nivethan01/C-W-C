@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { loginUser } from "../../api_Calls/auth";
+import toast from "react-hot-toast";
 
 function Login() {
   const [User, setUser] = React.useState({
@@ -12,15 +13,15 @@ function Login() {
     e.preventDefault();
     try {
       const response = await loginUser(User); // Corrected "responce" to "response"
-      if (response.status) {
-        alert(response.message);
+      if (response.success) {
+        toast.success(response.message);
         localStorage.setItem("token", response.token); // Storing token in local storage
         window.location.href = "/"; // Redirecting to home page
       } else { 
-        alert(response.message);
+        toast.error(response.message);
       }
     } catch (err) {
-      alert(err.message); // Displaying error message
+      toast.error(err.message); // Displaying error message
     }
   }
 
