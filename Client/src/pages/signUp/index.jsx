@@ -15,6 +15,7 @@ function SignUp() {
       const response = await signUpUser(User);
       if (response.success) {
         toast.success(response.message);
+        window.location.href = "/";
       } else {
         toast.error(response.message);
       }

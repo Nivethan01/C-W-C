@@ -2,6 +2,9 @@ import './Home.css';
 import { Link } from "react-router-dom";
 function Home() {
     return (
+        // <div>
+        //     <h1>Welcome to the Home Page</h1>
+        // </div>
         <div className="home-container">
             <div className="overlay">
                 <div className="hero-section">
