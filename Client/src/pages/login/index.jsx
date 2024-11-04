@@ -2,8 +2,11 @@ import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { loginUser } from "../../api_Calls/auth";
 import toast from "react-hot-toast";
+import { useDispatch } from "react-redux";
+import { hideLoader, showLoader } from "../../redux/loaderSlice";
 
 function Login() {
+  const dispatch = useDispatch();
   const [User, setUser] = React.useState({
     email: "",
     password: "",
@@ -13,15 +16,18 @@ function Login() {
   async function onSubmit(e) {
     e.preventDefault();
     try {
+      dispatch(showLoader());
       const response = await loginUser(User);
+      dispatch(hideLoader());
       if (response.success) {
         toast.success(response.message);
         localStorage.setItem("token", response.token); // Storing token
-        navigate("/"); // Navigate to home page
+        window.location.href="/"; // Navigate to home page
       } else { 
         toast.error(response.message);
       }
     } catch (err) {
+      dispatch(hideLoader());
       toast.error(err.message);
     }
   }

@@ -1,23 +1,14 @@
-import './Home.css';
-import { Link } from "react-router-dom";
+import Header from './components/header'
 function Home() {
     return (
-        // <div>
-        //     <h1>Welcome to the Home Page</h1>
-        // </div>
-        <div className="home-container">
-            <div className="overlay">
-                <div className="hero-section">
-                    <h2>Welcome to Chatly</h2>
-                    <p>Connect instantly with friends and communities.</p>
-                    <div className="cta-buttons">
-                        <Link to="/login" className="primary-btn">Get Started</Link>
-                        <Link to="/learn" className="secondary-btn">Learn More</Link>
-                    </div>
-                    {/* <input type="text" placeholder="Enter your username" className="username-input" /> */}
-                </div>
-            </div>
+        <div className="home-page">
+          <Header></Header>
+        <div className="main-content">
+         {/* <!--SIDEBAR LAYOUT-->
+         <!--CHAT AREA LAYOUT--> */}
+         </div>
         </div>
+       
     );
 }
 

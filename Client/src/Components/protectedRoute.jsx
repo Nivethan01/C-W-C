@@ -1,26 +1,31 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { getloggedInUser } from "./../api_Calls/users";
+import { useDispatch, useSelector } from "react-redux";
+import { showLoader, hideLoader } from "../redux/loaderSlice";
+import { setUser } from "../redux/userSlice";
+import toast from "react-hot-toast";
 
 function ProtectedRoute({ children }) {
-  const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const { user } = useSelector((state) => state.userReducer);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
-
   const getLoggedInUser = async () => {
+    let response = null;
     try {
-      const response = await getloggedInUser();
+      dispatch(showLoader());
+      response = await getloggedInUser();
+      dispatch(hideLoader());
       if (response.success) {
-        setUser(response.data);
+        dispatch(setUser(response.data));
       } else {
-        alert("Error");
-        navigate("/login");
+        toast.error(response.message);
+        window.location.href = "/login";
       }
     } catch (error) {
       console.error("Error fetching user:", error);
+      dispatch(hideLoader());
       navigate("/login");
-    } finally {
-      setLoading(false);
     }
   };
 
@@ -30,24 +35,8 @@ function ProtectedRoute({ children }) {
     } else {
       navigate("/login");
     }
-  }, [navigate]); // Ensures useEffect only runs once
+  }, []);
 
-  if (loading) {
-    return <div className="spinner">Loading...</div>; // Add CSS for the spinner class
-  }
-
-  return (
-    <div>
-      {user && (
-        <>
-          <p>Name: {user.firstname + " " + user.lastname}</p>
-          <p>Email: {user.email}</p>
-          <br />
-        </>
-      )}
-      {children}
-    </div>
-  );
+  return <div>{children}</div>;
 }
-
 export default ProtectedRoute;

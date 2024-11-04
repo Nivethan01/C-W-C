@@ -2,7 +2,10 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { signUpUser } from "./../../api_Calls/auth";
 import toast from "react-hot-toast";
+import { useDispatch } from "react-redux";
+import { hideLoader, showLoader } from "../../redux/loaderSlice";
 function SignUp() {
+  const dispatch=useDispatch();
   const [User, setUser] = React.useState({
     firstname: "",
     lastname: "",
@@ -12,7 +15,9 @@ function SignUp() {
   async function onformSubmit(e) {
     e.preventDefault();
     try {
+      dispatch(showLoader())
       const response = await signUpUser(User);
+      dispatch(hideLoader())
       if (response.success) {
         toast.success(response.message);
         window.location.href = "/";
@@ -20,6 +25,7 @@ function SignUp() {
         toast.error(response.message);
       }
     } catch (err) {
+      dispatch(hideLoader())
       toast.error(err.message);
     }
   }
