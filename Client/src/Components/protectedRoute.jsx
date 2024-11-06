@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { getloggedInUser } from "./../api_Calls/users";
+import { getloggedInUser, getallUsers } from "./../api_Calls/users";
 import { useDispatch, useSelector } from "react-redux";
 import { showLoader, hideLoader } from "../redux/loaderSlice";
-import { setUser } from "../redux/userSlice";
+import { setUser, setAllUsers } from "../redux/userSlice";
 import toast from "react-hot-toast";
 
 function ProtectedRoute({ children }) {
@@ -29,9 +29,25 @@ function ProtectedRoute({ children }) {
     }
   };
 
+  const getAllUsers = async () => {
+    let response = null;
+    try {
+      dispatch(showLoader());
+      response = await getallUsers();
+      dispatch(hideLoader());
+      if (response.success) {
+        dispatch(setAllUsers(response.data));
+      } else {
+        toast.error(response.message);
+        window.location.href = "/login";
+      }
+    } catch (error) {}
+  };
+
   useEffect(() => {
     if (localStorage.getItem("token")) {
       getLoggedInUser();
+      getAllUsers();
     } else {
       navigate("/login");
     }

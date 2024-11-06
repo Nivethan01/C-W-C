@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { loginUser } from "../../api_Calls/auth";
 import toast from "react-hot-toast";
 import { useDispatch } from "react-redux";
@@ -11,7 +11,7 @@ function Login() {
     email: "",
     password: "",
   });
-  const navigate = useNavigate();
+  
 
   async function onSubmit(e) {
     e.preventDefault();
@@ -22,8 +22,8 @@ function Login() {
       if (response.success) {
         toast.success(response.message);
         localStorage.setItem("token", response.token); // Storing token
-        window.location.href="/"; // Navigate to home page
-      } else { 
+        window.location.href = "/"; // Navigate to home page
+      } else {
         toast.error(response.message);
       }
     } catch (err) {
@@ -60,7 +60,9 @@ function Login() {
         <div className="card_terms">
           <span>
             Don't have an account yet?
-            <Link to="/signup" className="link">Signup Here</Link>
+            <Link to="/signup" className="link">
+              Signup Here
+            </Link>
           </span>
         </div>
       </div>
