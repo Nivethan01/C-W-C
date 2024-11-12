@@ -12,8 +12,6 @@ export const loginUser = async (User) => {
     const response = await axiosInstance.post("/api/auth/login", User);
     return response.data;
   } catch (err) {
-    console.log(err);
-    
     return err;
   }
 };

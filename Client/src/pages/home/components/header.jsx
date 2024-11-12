@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 function Header() {
   const { user } = useSelector((state) => state.userReducer);
   
-  console.log(user);
+  // console.log(user);
   
   function getFullName() {
     let fname = user?.firstname.toUpperCase();

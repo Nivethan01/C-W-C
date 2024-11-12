@@ -16,7 +16,7 @@ function Learn() {
                     <li><strong>Customizable Profiles:</strong> Personalize your profile with custom usernames and profile pictures.</li>
                     <li><strong>End-to-End Encryption:</strong> Your conversations are private and secure.</li>
                 </ul>
-
+                
                 <h3>Why Choose Chatly?</h3>
                 <p>Chatly is built with privacy and ease of use in mind. Whether you’re chatting one-on-one or in groups, we provide a seamless and safe chat experience. Our team continuously works to bring you new features and improvements based on your feedback.</p>
 
