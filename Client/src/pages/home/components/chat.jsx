@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { createNewMessage, getAllMessages } from "../../../api_Calls/msg";
 import { showLoader, hideLoader } from "../../../redux/loaderSlice";
 import toast from "react-hot-toast";
+import moment from "moment";
 
 function ChatArea() {
   const dispatch = useDispatch();
@@ -10,6 +11,20 @@ function ChatArea() {
   const selectedUser = selectedChat?.members.find((u) => u._id !== user._id);
   const [message, setMessage] = useState("");
   const [allMessages, setAllMessages] = useState([]);
+
+  const formatTime=(timestamp)=>{
+    const now = moment();
+    const diff=now.diff(moment(timestamp),'days')
+    if(diff<1){
+      return `Today ${moment(timestamp).format('hh:mm A')}`;
+    }
+    if(diff===1){
+      return `Yesterday ${moment(timestamp).format('hh:mm A')}`
+    }
+    else{
+      return moment(timestamp).format('DD MMM YYYY hh:mm A')
+    }
+  }
 
   const sendMessage = async () => {
     if (!message.trim()) return; // Prevent sending empty messages
@@ -62,14 +77,42 @@ function ChatArea() {
               `${selectedUser.firstname} ${selectedUser.lastname}`}
           </div>
           <div className="main-chat-area">
-            {allMessages.map((msg, index) => (
-              <div key={index} className="message">
-                <strong>
-                  {msg.sender.firstname} {msg.sender.lastname}
-                </strong>
-                <p>{msg.text}</p>
-              </div>
-            ))}
+            {allMessages.map((msg) => {
+              const isCurrentUserSender = msg.sender === user._id;
+              return (
+                <div
+                  className="message-container"
+                  style={
+                    isCurrentUserSender
+                      ? { justifyContent: "end" }
+                      : { justifyContent: "start" }
+                  }
+                >
+                  <div>
+                    <div
+                      className={
+                        isCurrentUserSender
+                          ? "send-message"
+                          : "received-message"
+                      }
+                    >
+                      {msg.text}
+                    </div>
+
+                    <div
+                      className="message-timestamp"
+                      style={
+                        isCurrentUserSender
+                          ? { float: "right" }
+                          : { float: "left" }
+                      }
+                    >
+                     {formatTime(msg.createdAt)}
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
           </div>
           <div className="send-message-div">
             <input

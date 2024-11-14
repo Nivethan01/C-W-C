@@ -13,6 +13,7 @@ body {
   overflow-y: hidden;
 }
 
+
 /*******************************************************
 *************CSS STYLES FOR LOGIN & SIGNUP**************
 ********************************************************/
@@ -371,7 +372,7 @@ i {
   border-radius: 10px;
   display: flex;
   flex-direction: column;
-  min-height: 70vh;
+  height: 85vh;
 }
 
 /*******************************************************
@@ -391,14 +392,15 @@ i {
 ********************************************************/
 .main-chat-area {
   flex: 1;
-  /* overflow-y: scroll;
+   overflow-y: scroll;
   padding: 10px 20px;
-  background-image: url("../public/download.jpg"); */
+  /* background-image: url("../public/download.jpg");  */
   
 }
 
 .send-message-div {
   position: relative;
+  margin-top: 20px;
   
 }
 
@@ -454,13 +456,13 @@ i {
 
 /* Track */
 .main-chat-area::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 2px grey;
+  box-shadow: inset 0 0 2px rgb(34, 34, 34);
   border-radius: 10px;
 }
 
 /* Handle */
 .main-chat-area::-webkit-scrollbar-thumb {
-  background: rgba;
+  background: rgba(233, 233, 238, 0.488);
   border-radius: 10px;
 }
 
@@ -485,14 +487,14 @@ i {
 }
 
 .send-message {
-  background-color: rgba;
-  color: rgba(255, 255, 255, 0.197);
+background-color: rgba(0, 42, 255, 0.556);
+  color: rgb(255, 255, 255);
   margin-left: 100px;
   border-top-right-radius: 0px;
 }
 
 .received-message {
-  background-color: #ddd;
+  background-color: #e1d4d4b6;
   color: #28282b;
   margin-right: 100px;
   border-bottom-left-radius: 0px;
