@@ -5,9 +5,11 @@ function Header() {
   // console.log(user);
   
   function getFullName() {
-    let fname = user?.firstname.toUpperCase();
-    let lname = user?.lastname.toUpperCase();
-    return fname + " " + lname;
+    
+      let fname=user?.firstname.at(0).toUpperCase()+user?.firstname.slice(1).toLowerCase();
+      let lname=user?.lastname.at(0).toUpperCase()+user?.lastname.slice(1).toLowerCase();
+      return fname+' '+lname
+  
   }
   function getInitial() {
     let fchar = user?.firstname.toUpperCase()[0];

@@ -484,7 +484,8 @@ i {
   border-radius: 10px;
   font-size: 14px;
   width: fit-content;
-}
+} 
+
 
 .send-message {
 background-color: rgba(0, 42, 255, 0.556);
@@ -501,10 +502,10 @@ background-color: rgba(0, 42, 255, 0.556);
 }
 .message-timestamp {
   width: fit-content;
-  font-size: 13px;
+  font-size: 10px;
 }
 .last-message-timestamp {
-  font-size: 13px;
+  font-size: 10px;
 }
 
 /*****************************************************
