@@ -14,7 +14,7 @@ function Header() {
   function getInitial() {
     let fchar = user?.firstname.toUpperCase()[0];
     let lchar = user?.lastname.toUpperCase()[0];
-    return fchar + lchar;
+    return fchar + lchar
   }
   return (
     <div className="app-header">
